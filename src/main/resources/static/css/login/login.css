@@ -1,0 +1,216 @@
+@charset "utf-8";
+
+body {
+	color: #000;
+	background: #fff;
+	font-size: 12px;
+	line-height: 166.6%;
+}
+
+body,input,select,button {
+	font-family: verdana
+}
+
+h1,h2,h3,select,input,button {
+	font-size: 100%
+}
+
+.heading{
+	display: block;
+	font-size: 33px;
+	font-weight: 500;
+	padding: 35px 0;
+	color: #fff;
+	border-bottom: 1px solid #f0f0f0;
+	margin-bottom: 30px;
+}
+
+body,h1,h2,h3,ul,li,form,p,img {
+	margin: 0;
+	padding: 0;
+	border: 0
+}
+
+input,button,select,img {
+	margin: 0;
+	line-height: normal
+}
+
+select {
+	padding: 1px
+}
+
+ul {
+	list-style: none
+}
+
+select,input,button,button img,label {
+	vertical-align: middle
+}
+
+header,footer,section,aside,nav,hgroup,figure,figcaption {
+	display: block;
+	margin: 0;
+	padding: 0;
+	border: none
+}
+
+a {
+	text-decoration: none;
+	color: #959595
+}
+
+a:hover {
+	color: #626262
+}
+
+.fontWeight {
+	font-weight: 700;
+}
+
+.tc {
+	text-align: center;
+}
+
+.login-body {
+	min-height: 640px;
+	background: #000b1f url(images/login-bg.jpg) center top no-repeat;
+	overflow: hidden;
+}
+
+.login-wrap {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+.login-wrap .login-logo {
+	margin-top: 100px;
+	margin-bottom: 20px;
+}
+
+.login-wrap .login-box {
+	margin: 0 auto;
+	padding-left: 65px;
+	padding-top: 30px;
+	width: 343px;
+	height: 260px;
+	background: url(images/login-boxbg.png) center center no-repeat;
+}
+
+.login-footer {
+	color: #fff;
+}
+
+.loginFormIpt {
+	position: relative;
+	margin-bottom: 18px;
+	width: 275px;
+	height: 30px;
+	line-height: 30px;
+	clear: both;
+	background: #fff;
+	border-radius: 5px;
+	z-index: 2;
+	overflow: hidden;
+}
+
+.loginFormIpt .ico {
+	position: absolute;
+	left: 8px;
+	top: 3px;
+	z-index: 1;
+	display: block;
+	width: 25px;
+	height: 25px;
+	background: url(images/login-icon.png) no-repeat;
+}
+
+.loginFormIpt .ico.pwd {
+	background-position: 0 -25px;
+}
+
+.loginFormIpt .inpt {
+	margin-left: 40px;
+	padding: 10px 0;
+	border: none;
+	width: 225px;
+	height: 15px;
+	font-size: 14px;
+	outline: none;
+}
+
+.select-effect{
+	margin-left: 40px;
+	border: none;
+	width: 225px;
+	line-height:40px;
+	font-size: 14px;
+	outline: none;
+}
+
+.login-box .btn {
+	padding-top: 10px;
+}
+
+.login-btn {
+	display: block;
+	width: 277px;
+	height: 38px;
+	line-height: 38px;
+	background: #0f7ed8;
+	color: #fff;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 16px;
+}
+
+.login-btn:hover {
+	color: #fff;
+	background: #178ceb;
+}
+
+.login-footer {
+	padding-top: 30px;
+}
+
+/*欢迎页*/
+.welcome {
+	width: 700px;
+	height: 450px;
+	position: relative;
+	overflow: hidden;
+	margin: 10px auto 30px auto;
+	background: url(images/wel_bg.png) no-repeat;
+}
+
+.welcome ul {
+	position: absolute;
+	top: 160px;
+	left: 70px;
+	display: block;
+}
+
+.welcome ul li {
+	line-height: 25px;
+}
+
+.welcome ul li span {
+	color: #999;
+}
+
+.welcome ul li strong {
+	color: #F60;
+	font-size: 14px;
+}
+
+.welcome p {
+	position: absolute;
+	top: 290px;
+	left: 100px;
+	display: block;
+}
+
+.welcome p a {
+	float: left;
+	margin-right: 10px;
+}

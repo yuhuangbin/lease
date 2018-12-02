@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lease.mapper.LeaseInfoMapper">
+  <resultMap id="BaseResultMap" type="com.lease.domain.LeaseInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="box_code" jdbcType="VARCHAR" property="boxCode" />
+    <result column="air_code" jdbcType="VARCHAR" property="airCode" />
+    <result column="bed_code" jdbcType="VARCHAR" property="bedCode" />
+    <result column="lessee_name" jdbcType="VARCHAR" property="lesseeName" />
+    <result column="lessee_tel" jdbcType="VARCHAR" property="lesseeTel" />
+    <result column="lessee_company" jdbcType="VARCHAR" property="lesseeCompany" />
+    <result column="cash_pledge" jdbcType="DECIMAL" property="cashPledge" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="start_date" jdbcType="TIMESTAMP" property="startDate" />
+    <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, box_code, air_code, bed_code, lessee_name, lessee_tel, lessee_company, cash_pledge, 
+    status, start_date, end_date, create_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from lease_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from lease_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lease.domain.LeaseInfo">
+    insert into lease_info (id, box_code, air_code, 
+      bed_code, lessee_name, lessee_tel, 
+      lessee_company, cash_pledge, status, 
+      start_date, end_date, create_date
+      )
+    values (#{id,jdbcType=INTEGER}, #{boxCode,jdbcType=VARCHAR}, #{airCode,jdbcType=VARCHAR}, 
+      #{bedCode,jdbcType=VARCHAR}, #{lesseeName,jdbcType=VARCHAR}, #{lesseeTel,jdbcType=VARCHAR}, 
+      #{lesseeCompany,jdbcType=VARCHAR}, #{cashPledge,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER}, 
+      #{startDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, #{createDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lease.domain.LeaseInfo">
+    insert into lease_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="boxCode != null">
+        box_code,
+      </if>
+      <if test="airCode != null">
+        air_code,
+      </if>
+      <if test="bedCode != null">
+        bed_code,
+      </if>
+      <if test="lesseeName != null">
+        lessee_name,
+      </if>
+      <if test="lesseeTel != null">
+        lessee_tel,
+      </if>
+      <if test="lesseeCompany != null">
+        lessee_company,
+      </if>
+      <if test="cashPledge != null">
+        cash_pledge,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="startDate != null">
+        start_date,
+      </if>
+      <if test="endDate != null">
+        end_date,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="boxCode != null">
+        #{boxCode,jdbcType=VARCHAR},
+      </if>
+      <if test="airCode != null">
+        #{airCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bedCode != null">
+        #{bedCode,jdbcType=VARCHAR},
+      </if>
+      <if test="lesseeName != null">
+        #{lesseeName,jdbcType=VARCHAR},
+      </if>
+      <if test="lesseeTel != null">
+        #{lesseeTel,jdbcType=VARCHAR},
+      </if>
+      <if test="lesseeCompany != null">
+        #{lesseeCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="cashPledge != null">
+        #{cashPledge,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lease.domain.LeaseInfo">
+    update lease_info
+    <set>
+      <if test="boxCode != null">
+        box_code = #{boxCode,jdbcType=VARCHAR},
+      </if>
+      <if test="airCode != null">
+        air_code = #{airCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bedCode != null">
+        bed_code = #{bedCode,jdbcType=VARCHAR},
+      </if>
+      <if test="lesseeName != null">
+        lessee_name = #{lesseeName,jdbcType=VARCHAR},
+      </if>
+      <if test="lesseeTel != null">
+        lessee_tel = #{lesseeTel,jdbcType=VARCHAR},
+      </if>
+      <if test="lesseeCompany != null">
+        lessee_company = #{lesseeCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="cashPledge != null">
+        cash_pledge = #{cashPledge,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="startDate != null">
+        start_date = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lease.domain.LeaseInfo">
+    update lease_info
+    set box_code = #{boxCode,jdbcType=VARCHAR},
+      air_code = #{airCode,jdbcType=VARCHAR},
+      bed_code = #{bedCode,jdbcType=VARCHAR},
+      lessee_name = #{lesseeName,jdbcType=VARCHAR},
+      lessee_tel = #{lesseeTel,jdbcType=VARCHAR},
+      lessee_company = #{lesseeCompany,jdbcType=VARCHAR},
+      cash_pledge = #{cashPledge,jdbcType=DECIMAL},
+      status = #{status,jdbcType=INTEGER},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP},
+      create_date = #{createDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

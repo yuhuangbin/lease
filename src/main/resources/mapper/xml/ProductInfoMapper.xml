@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lease.mapper.ProductInfoMapper">
+  <resultMap id="BaseResultMap" type="com.lease.domain.ProductInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="product_code" jdbcType="VARCHAR" property="productCode" />
+    <result column="product_type" jdbcType="INTEGER" property="productType" />
+    <result column="buy_time" jdbcType="TIMESTAMP" property="buyTime" />
+    <result column="factory_name" jdbcType="VARCHAR" property="factoryName" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="product_high" jdbcType="DECIMAL" property="high" />
+    <result column="product_with" jdbcType="DECIMAL" property="with" />
+    <result column="product_length" jdbcType="DECIMAL" property="length" />
+    <result column="product_power" jdbcType="VARCHAR" property="power" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, product_code, product_type, buy_time, factory_name, price, product_high,product_with, product_length,
+    product_power, status, create_date
+  </sql>
+<select id="select" resultMap="BaseResultMap" parameterType="com.lease.domain.ProductInfo">
+    SELECT
+    <include refid="Base_Column_List" />
+    from product_info
+    <where>
+        <if test="productCode != null and productCode != ''">
+            and product_code LIKE concat('%',#{productCode,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="productType != null">
+            and product_type = #{productType,jdbcType=INTEGER}
+        </if>
+        <if test="buyTime != null">
+            and buy_time = #{buyTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="factoryName != null">
+            and factory_name = #{factoryName,jdbcType=VARCHAR}
+        </if>
+        <if test="price != null">
+            and price = #{price,jdbcType=DECIMAL}
+        </if>
+        <if test="high != null">
+            and product_high = #{high,jdbcType=DECIMAL}
+        </if>
+        <if test="with != null">
+            and product_with = #{with,jdbcType=DECIMAL}
+        </if>
+        <if test="length != null">
+            and product_length = #{length,jdbcType=DECIMAL}
+        </if>
+        <if test="power != null">
+            and product_power = #{power,jdbcType=VARCHAR}
+        </if>
+        <if test="status != null">
+            and status = #{status,jdbcType=INTEGER}
+        </if>
+        <if test="createDate != null">
+            and create_date = #{createDate,jdbcType=TIMESTAMP}
+        </if>
+    </where>
+    ORDER BY create_date DESC
+</select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    from product_info ORDER BY create_date DESC
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from product_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from product_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lease.domain.ProductInfo">
+    insert into product_info (id, product_code, product_type, 
+      buy_time, factory_name, price, 
+      product_high, product_with, product_length, 
+      product_power, status, create_date
+      )
+    values (#{id,jdbcType=INTEGER}, #{productCode,jdbcType=VARCHAR}, #{productType,jdbcType=INTEGER}, 
+      #{buyTime,jdbcType=TIMESTAMP}, #{factoryName,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
+      #{high,jdbcType=DECIMAL}, #{with,jdbcType=DECIMAL}, #{length,jdbcType=DECIMAL},
+      #{power,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lease.domain.ProductInfo">
+    insert into product_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="productCode != null">
+        product_code,
+      </if>
+      <if test="productType != null">
+        product_type,
+      </if>
+      <if test="buyTime != null">
+        buy_time,
+      </if>
+      <if test="factoryName != null">
+        factory_name,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="high != null">
+        product_high,
+      </if>
+      <if test="with != null">
+        product_with,
+      </if>
+      <if test="length != null">
+        product_length,
+      </if>
+      <if test="power != null">
+        product_power,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="productCode != null">
+        #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null">
+        #{productType,jdbcType=INTEGER},
+      </if>
+      <if test="buyTime != null">
+        #{buyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="factoryName != null">
+        #{factoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="high != null">
+        #{high,jdbcType=DECIMAL},
+      </if>
+      <if test="with != null">
+        #{with,jdbcType=DECIMAL},
+      </if>
+      <if test="length != null">
+        #{length,jdbcType=DECIMAL},
+      </if>
+      <if test="power != null">
+        #{power,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lease.domain.ProductInfo">
+    update product_info
+    <set>
+      <if test="productCode != null">
+        product_code = #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null">
+        product_type = #{productType,jdbcType=INTEGER},
+      </if>
+      <if test="buyTime != null">
+        buy_time = #{buyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="factoryName != null">
+        factory_name = #{factoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="high != null">
+        product_high = #{high,jdbcType=DECIMAL},
+      </if>
+      <if test="with != null">
+        product_with = #{with,jdbcType=DECIMAL},
+      </if>
+      <if test="length != null">
+        product_length = #{length,jdbcType=DECIMAL},
+      </if>
+      <if test="power != null">
+        product_power = #{power,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lease.domain.ProductInfo">
+    update product_info
+    set product_code = #{productCode,jdbcType=VARCHAR},
+      product_type = #{productType,jdbcType=INTEGER},
+      buy_time = #{buyTime,jdbcType=TIMESTAMP},
+      factory_name = #{factoryName,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      product_high = #{high,jdbcType=DECIMAL},
+      product_with = #{with,jdbcType=DECIMAL},
+      product_length = #{length,jdbcType=DECIMAL},
+      product_power = #{power,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
