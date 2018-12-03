@@ -19,6 +19,11 @@
     id, product_code, product_type, buy_time, factory_name, price, product_high,product_with, product_length,
     product_power, status, create_date
   </sql>
+  <select id="selectByCode" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    from product_info where product_code = #{code}
+  </select>
 <select id="select" resultMap="BaseResultMap" parameterType="com.lease.domain.ProductInfo">
     SELECT
     <include refid="Base_Column_List" />

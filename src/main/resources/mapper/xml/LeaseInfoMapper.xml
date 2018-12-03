@@ -19,6 +19,20 @@
     id, box_code, air_code, bed_code, lessee_name, lessee_tel, lessee_company, cash_pledge, 
     status, start_date, end_date, create_date
   </sql>
+  <select id="leaseList" resultMap="BaseResultMap" parameterType="com.lease.domain.LeaseInfo">
+    SELECT
+    <include refid="Base_Column_List" />
+    from lease_info
+    <where>
+      <if test="lesseeName != null and lesseeName != ''">
+        and lessee_name like concat('%',#{lesseeName,jdbcType=VARCHAR},'%')
+      </if>
+    </where>
+  </select>
+  <select id="selectByStatus" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" />
+    from lease_info WHERE status = #{status}
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -123,15 +137,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.lease.domain.LeaseInfo">
     update lease_info
     <set>
-      <if test="boxCode != null">
         box_code = #{boxCode,jdbcType=VARCHAR},
-      </if>
-      <if test="airCode != null">
         air_code = #{airCode,jdbcType=VARCHAR},
-      </if>
-      <if test="bedCode != null">
         bed_code = #{bedCode,jdbcType=VARCHAR},
-      </if>
       <if test="lesseeName != null">
         lessee_name = #{lesseeName,jdbcType=VARCHAR},
       </if>

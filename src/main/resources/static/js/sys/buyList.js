@@ -51,13 +51,16 @@ function edit(obj) {
     var id = $(obj).val();
     $.ajax({
         type: "post",
-        url: "/product/getByid",
+        url: "/api/product/getByid",
         data : {"id":id},
         success : function (res) {
             if (res.code == 0) {
             	changeForm(res.data.productType);
                 $("#productType").prop("readonly", true);
                 setFrom(res.data);
+            } else if (res.code == -1000) {
+                layer.msg(res.msg, {icon: 1});
+                setTimeout(function(){ location.href="/"; }, 2000);
             }
         }
     })
@@ -71,13 +74,16 @@ function del(obj) {
 
     	$.ajax({
             type: "post",
-            url: "/product/del",
+            url: "/api/product/del",
 			data : {"id":id},
 			success : function (res) {
 				if (res.code == 0) {
                     layer.msg("操作成功", {icon: 1});
                     freshList();
-				}
+				} else if (res.code == -1000) {
+                    layer.msg(res.msg, {icon: 1});
+                    setTimeout(function(){ location.href="/"; }, 2000);
+                }
             }
 		})
     });
@@ -87,40 +93,42 @@ function freshList() {
 	$.ajax({
 		type: "post",
 		contentType: "application/json",
-		url: "/product/buyList",
+		url: "/api/product/buyList",
 		data: JSON.stringify($.extend($(".relForm").serializeJSON(), {pageNo: currPage})),
 		success: function (res) {
-			if (0 != res.code) {
-				return;
-			}
-			var data = res.data;
-			var arr = [];
-			$.each(data, function (i) {
-				var productName = buildproductName(this.productType)
-				var statusName = buildStatus(this.status);
-				arr.push("<tr>");
+			if (0 == res.code) {
+                var data = res.data;
+                var arr = [];
+                $.each(data, function (i) {
+                    var productName = buildproductName(this.productType)
+                    var statusName = buildStatus(this.status);
+                    arr.push("<tr>");
 
-				arr.push("<td>" + this.productCode + "</td>");
-                arr.push("<td>" + productName + "</td>");
-				arr.push("<td>" + this.buyTime + "</td>");
-				arr.push("<td>" + this.factoryName + "</td>");
-				arr.push("<td>" + this.price + "</td>");
-				arr.push("<td>" + buildCKG(this.length,this.with,this.high) + "</td>");
-				var powerName = "";
-				if (this.power != null) {
-                    powerName = this.power;
-				}
-				arr.push("<td>" + powerName + "</td>");
-				arr.push("<td>" + statusName + "</td>");
-				arr.push("<td class=\"text-nowrap\">");
-				arr.push("<button type=\"button\"  class=\"btn btn-sm btn-icon btn-flat btn-default\" onclick=\"edit(this)\" value=\"" + this.id + "\">");
-                arr.push("<a>修改</a></button>");
-                arr.push("<button type=\"button\" class=\"btn btn-sm btn-icon btn-flat btn-default\" onclick=\"del(this)\" value=\"" + this.id + "\">");
-                arr.push("<a>删除</a></button>");
-				arr.push("</td></tr>");
-			});
-			$(".panel-body table.table>tbody").html(arr.join(""));
-			$('[data-toggle="tooltip"]').tooltip();
+                    arr.push("<td>" + this.productCode + "</td>");
+                    arr.push("<td>" + productName + "</td>");
+                    arr.push("<td>" + this.buyTime + "</td>");
+                    arr.push("<td>" + this.factoryName + "</td>");
+                    arr.push("<td>" + this.price + "</td>");
+                    arr.push("<td>" + buildCKG(this.length,this.with,this.high) + "</td>");
+                    var powerName = "";
+                    if (this.power != null) {
+                        powerName = this.power;
+                    }
+                    arr.push("<td>" + powerName + "</td>");
+                    arr.push("<td>" + statusName + "</td>");
+                    arr.push("<td class=\"text-nowrap\">");
+                    arr.push("<button type=\"button\"  class=\"btn btn-sm btn-icon btn-flat btn-default\" onclick=\"edit(this)\" value=\"" + this.id + "\">");
+                    arr.push("<a>修改</a></button>");
+                    arr.push("<button type=\"button\" class=\"btn btn-sm btn-icon btn-flat btn-default\" onclick=\"del(this)\" value=\"" + this.id + "\">");
+                    arr.push("<a>删除</a></button>");
+                    arr.push("</td></tr>");
+                });
+                $(".panel-body table.table>tbody").html(arr.join(""));
+                $('[data-toggle="tooltip"]').tooltip();
+			} else if (res.code == -1000) {
+                layer.msg(res.msg, {icon: 1});
+                setTimeout(function(){ location.href="/"; }, 2000);
+            }
 		}
 	});
 }
@@ -167,14 +175,17 @@ function save() {
 	$.ajax({
 		type: "post",
 		contentType: "application/json",
-		url: "/product/save",
+		url: "/api/product/save",
 		data: JSON.stringify(form.serializeJSON()),
 		success: function (res) {
 			if (0 == res.code) {
 				$("#noticeWin").modal("hide");
 				layer.msg("操作成功", {icon: 1});
 				freshList();
-			} else {
+			} else if (res.code == -1000) {
+                layer.msg(res.msg, {icon: 1});
+                setTimeout(function(){ location.href="/"; }, 2000);
+            } else {
 				layer.alert(res.desc, {icon: 2});
 			}
 		}

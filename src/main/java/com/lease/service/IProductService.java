@@ -1,6 +1,7 @@
 package com.lease.service;
 
 import com.lease.api.ApiResponse;
+import com.lease.domain.LeaseInfo;
 import com.lease.domain.ProductInfo;
 
 import java.util.List;
@@ -20,4 +21,6 @@ public interface IProductService {
     ApiResponse del(Integer id);
 
     ProductInfo getByid(Integer id);
+
+    ApiResponse verify(LeaseInfo leaseInfo);
 }

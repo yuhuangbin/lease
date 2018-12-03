@@ -3,7 +3,7 @@ package com.lease.api;
 public enum ResponseInfo {
 
 	SUCCESS(0, "success"),
-	LOGIN_EXPRIED(-1000, "请重新登录"),
+	LOGIN_EXPRIED(-1000, "您的登录已失效，请重新登录"),
 	ERROR(-1, "系统繁忙");
 
 

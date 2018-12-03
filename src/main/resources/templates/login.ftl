@@ -23,7 +23,7 @@
 		<div class="login-box">
 			<div class="loginFormIpt">
 				<b class="ico"></b>
-				<input class="inpt" title="请输入登录账户" id="userCode" name="userCode" maxlength="8" type="text"
+				<input class="inpt" title="请输入登录账户" id="userCode" name="userCode"  type="text"
 					   placeholder="请输入登录账户"/>
 			</div>
 			<div class="loginFormIpt">

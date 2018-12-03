@@ -3,6 +3,7 @@ package com.lease.config;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.lease.interceptor.LoginInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -21,10 +22,10 @@ import java.util.List;
 @Configuration
 public class WebConfig extends WebMvcConfigurerAdapter {
 
-    /*@Override
+    @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**");
-    }*/
+        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/api/**");
+    }
 
     @Override
     public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
@@ -41,7 +42,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         FastJsonConfig config = new FastJsonConfig();
         config.setSerializerFeatures(
                 SerializerFeature.WriteDateUseDateFormat,
-                SerializerFeature.WriteEnumUsingToString
+                SerializerFeature.WriteEnumUsingToString,
+                SerializerFeature.WriteNullStringAsEmpty
         );
         fastJsonHttpMessageConverter.setFastJsonConfig(config);
 

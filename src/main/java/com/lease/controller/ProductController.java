@@ -1,8 +1,10 @@
 package com.lease.controller;
 
 import com.lease.api.ApiResponse;
+import com.lease.domain.LeaseInfo;
 import com.lease.domain.ProductInfo;
 import com.lease.service.IProductService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +18,7 @@ import java.util.List;
  * Date: 2018-12-01
  */
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/api/product")
 public class ProductController {
     @Autowired
     private IProductService productService;
@@ -40,5 +42,10 @@ public class ProductController {
     public ApiResponse get(Integer id) {
         ProductInfo productInfo = productService.getByid(id);
         return ApiResponse.getInstance(productInfo);
+    }
+
+    @RequestMapping("/verify")
+    public ApiResponse verify(@RequestBody LeaseInfo leaseInfo) {
+       return productService.verify(leaseInfo);
     }
 }

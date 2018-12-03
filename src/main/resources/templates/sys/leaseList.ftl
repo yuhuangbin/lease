@@ -10,17 +10,7 @@
 						<form class="relForm">
                             <div class="form-group search-item">
                                 <div class="input-group">
-                                    <input name="productCode" type="text" class="form-control" placeholder="产品编码"/>
-                                </div>
-                            </div>
-                            <div class="form-group search-item margin-left-30">
-                                <div class="input-group">
-                                    <select name="productType" has-head="产品类型">
-                                        <option value="">请选择</option>
-                                        <option value="1">集装箱</option>
-                                        <option value="2">活动床</option>
-                                        <option value="3">空调</option>
-                                    </select>
+                                    <input name="lesseeName" type="text" class="form-control" placeholder="承租人姓名"/>
                                 </div>
                             </div>
 							<button type="button" class="btn btn-default btn-outline btn-lg form-group"
@@ -46,6 +36,8 @@
 							<th class="text-nowrap">押金金额</th>
 							<th class="text-nowrap">租赁时间</th>
 							<th class="text-nowrap">结束时间</th>
+							<th class="text-nowrap">当前费用</th>
+							<th class="text-nowrap">状态</th>
                             <th class="text-nowrap">操作</th>
 						</tr>
 						</thead>
@@ -67,62 +59,58 @@
 			<div class="modal-body">
 				<div class="row">
                     <input type="hidden" name="id" value="">
-                    <div class="col-lg-12 form-group">
-                        <label class="col-lg-3 control-label"><span class="required">* </span>产品类型</label>
-                        <div class="col-lg-9">
-                            <select name="productType" id="productType" class="show-tick form-control" >
-                                <option value="1">集装箱</option>
-                                <option value="2">活动床</option>
-                                <option value="3">空调</option>
-                            </select>
-                        </div>
-                    </div>
 					<div class="col-lg-12 form-group">
-						<label class="col-lg-3 control-label"><span class="required">* </span>产品编码</label>
+						<label class="col-lg-3 control-label"><span class="required">* </span>承租人姓名</label>
 						<div class="col-lg-9">
-							<input type="text" name="productCode" class="form-control" maxlength="20" required/>
+							<input type="text" name="lesseeName" class="form-control" maxlength="20" required/>
 						</div>
 					</div>
                     <div class="col-lg-12 form-group">
-                        <label class="col-lg-3 control-label"><span class="required">* </span>购买日期</label>
+                        <label class="col-lg-3 control-label"><span class="required">* </span>联系电话</label>
                         <div class="col-lg-9">
-                            <input name="buyTime" type="text" class="form-control" data-plugin="datepicker" />
+                            <input type="text" name="lesseeTel" class="form-control" maxlength="20" required/>
                         </div>
                     </div>
                     <div class="col-lg-12 form-group">
-                        <label class="col-lg-3 control-label"><span class="required">* </span>制作商</label>
+                        <label class="col-lg-3 control-label"><span class="required">* </span>所属公司</label>
                         <div class="col-lg-9">
-                            <input type="text" name="factoryName" class="form-control" maxlength="30" required/>
+                            <input type="text" name="lesseeCompany" class="form-control" maxlength="30" required/>
                         </div>
                     </div>
                     <div class="col-lg-12 form-group">
-                        <label class="col-lg-3 control-label"><span class="required">* </span>购买价格</label>
+                        <label class="col-lg-3 control-label">集装箱编码</label>
                         <div class="col-lg-9">
-                            <input type="text" name="price" class="form-control" maxlength="30" required/>
+                            <input type="text" name="boxCode" class="form-control" maxlength="30" required/>
                         </div>
                     </div>
-                    <div class="col-lg-12 form-group" id="length">
-                        <label class="col-lg-3 control-label"><span class="required">* </span>物品长度</label>
+                    <div class="col-lg-12 form-group" >
+                        <label class="col-lg-3 control-label">空调编码</label>
                         <div class="col-lg-9">
-                            <input type="text" name="length" class="form-control" maxlength="30" required/>
+                            <input type="text" name="airCode" class="form-control" maxlength="30" required/>
                         </div>
                     </div>
-                    <div class="col-lg-12 form-group" id="with">
-                        <label class="col-lg-3 control-label"><span class="required">* </span>物品宽度</label>
+                    <div class="col-lg-12 form-group">
+                        <label class="col-lg-3 control-label">活动床编码</label>
                         <div class="col-lg-9">
-                            <input type="text" name="with" class="form-control" maxlength="30" required/>
+                            <input type="text" name="bedCode" class="form-control" maxlength="30" required/>
                         </div>
                     </div>
-                    <div class="col-lg-12 form-group" id="high">
-                        <label class="col-lg-3 control-label"><span class="required">* </span>物品高度</label>
+                    <div class="col-lg-12 form-group">
+                        <label class="col-lg-3 control-label"><span class="required">* </span>押金金额</label>
                         <div class="col-lg-9">
-                            <input type="text" name="high" class="form-control" maxlength="30" required/>
+                            <input type="text" name="cashPledge" class="form-control" maxlength="30" required/>
                         </div>
                     </div>
-                    <div class="col-lg-12 form-group" id="power">
-                        <label class="col-lg-3 control-label"><span class="required">* </span>功率</label>
+                    <div class="col-lg-12 form-group" >
+                        <label class="col-lg-3 control-label"><span class="required">* </span>租赁时间</label>
                         <div class="col-lg-9">
-                            <input type="text" name="power" class="form-control" maxlength="30" required/>
+                            <input name="startDate" type="text" class="form-control" data-plugin="datepicker" />
+                        </div>
+                    </div>
+                    <div class="col-lg-12 form-group" >
+                        <label class="col-lg-3 control-label"><span class="required">* </span>结束时间</label>
+                        <div class="col-lg-9">
+                            <input name="endDate" type="text" class="form-control" data-plugin="datepicker" />
                         </div>
                     </div>
 					<div class="col-lg-12 form-group btngroup">

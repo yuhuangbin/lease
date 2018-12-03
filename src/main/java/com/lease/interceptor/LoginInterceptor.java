@@ -1,6 +1,7 @@
 package com.lease.interceptor;
 
 import com.alibaba.fastjson.JSON;
+import com.lease.api.ApiResponse;
 import com.lease.api.ResponseInfo;
 import com.lease.config.EscapeLogin;
 import org.springframework.http.MediaType;
@@ -8,6 +9,7 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -33,6 +35,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         Object userInfo = request.getSession().getAttribute("userInfo");
         if (userInfo == null) {
             handleFailure(response, ResponseInfo.LOGIN_EXPRIED);
+            return false;
         }
         return true;
     }
@@ -44,7 +47,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
         try {
             PrintWriter out = response.getWriter();
-            out.println(JSON.toJSONString(responseInfo));
+            out.println(JSON.toJSONString(new ApiResponse(responseInfo)));
             out.flush();
         } catch (IOException e) {
             e.printStackTrace();

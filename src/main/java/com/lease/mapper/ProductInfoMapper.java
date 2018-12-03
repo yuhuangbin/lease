@@ -20,4 +20,6 @@ public interface ProductInfoMapper {
     List<ProductInfo> selectAll();
 
     List<ProductInfo> select(ProductInfo productInfo);
+
+    ProductInfo selectByCode(String code);
 }

@@ -1,5 +1,7 @@
 package com.lease.domain;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -48,21 +50,49 @@ public class LeaseInfo {
      *  0-出租中 1-已到期 2-已结算
      */
     private Integer status;
+    private String statusName;
 
     /**
      *  开始时间
      */
+    @JSONField(format = "yyyy-MM-dd")
     private Date startDate;
 
     /**
      *  结束时间
      */
+    @JSONField(format = "yyyy-MM-dd")
     private Date endDate;
 
     /**
      *  
      */
     private Date createDate;
+
+    private BigDecimal currentCost;
+
+    public String getStatusName() {
+        if (this.status == 0) {
+            return "出租中";
+        } else if (this.status == 1){
+            return "已到期";
+        } else if (this.status == 2){
+            return "已结算";
+        }
+        return "";
+    }
+
+    public void setStatusName(String statusName) {
+        this.statusName = statusName;
+    }
+
+    public BigDecimal getCurrentCost() {
+        return currentCost;
+    }
+
+    public void setCurrentCost(BigDecimal currentCost) {
+        this.currentCost = currentCost;
+    }
 
     public Integer getId() {
         return id;
