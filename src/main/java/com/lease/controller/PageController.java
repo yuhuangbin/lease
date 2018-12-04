@@ -6,6 +6,7 @@ import com.lease.api.ApiResponse;
 import com.lease.domain.Menu;
 import com.lease.service.IMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,31 +27,11 @@ public class PageController {
 
     @RequestMapping(value = "/loadMenu")
     public ApiResponse loadMenu() {
-        JSONObject data = new JSONObject();
-
-        List<Menu> rootList = menuService.selectById(Menu.ROOT);
-        data.put("navList", rootList);
-        data.put("menuList",buildMenuList());
-        return ApiResponse.getInstance(data);
+        return ApiResponse.getInstance(menuService.selectMenuList());
     }
 
-    private List<Menu> buildMenuList() {
-        List<Menu> rootList = menuService.selectById(Menu.ROOT);
-        rootList.forEach(menu -> {
-            buildNodes(menu);
-        });
-        return rootList;
+    @RequestMapping("/cacheEvict")
+    public ApiResponse CacheEvict() {
+        return ApiResponse.getInstance(menuService.CacheEvict());
     }
-
-    private void buildNodes(Menu menu) {
-        List<Menu> nodes = menuService.selectByUpId(menu.getId());
-        if (!nodes.isEmpty()) {
-            menu.setNodes(nodes);
-            nodes.forEach(node-> {
-                buildNodes(node);
-            });
-        }
-    }
-
-
 }

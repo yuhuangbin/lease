@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info">
+  <Properties>
+        <!-- 如下设置为日志默认输出路径,当前用户主目录,如果需要设置,可以在JVM设置类似:
+            -DLOG_HOME=/Users/kyle/Develop/car-loan/carloan/web/target/logs
+        -->
+        <Property name="LOG_HOME">${sys:user.home}/logs</Property>
+  </Properties>
+  <Appenders>   
+    <Console name="console" target="SYSTEM_OUT">
+     	<PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"/>
+    </Console>
+
+    <RollingRandomAccessFile name="RollingRandomAccessFile" fileName="${LOG_HOME}/lease.log"
+                 filePattern="${LOG_HOME}/$${date:yyyy-MM}/lease-%d{MM-dd-yyyy}-%i.log.gz">
+        <Filters>
+            <!--只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
+            <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+        </Filters>
+      <PatternLayout>
+        <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+      </PatternLayout>
+      <Policies>
+      	<OnStartupTriggeringPolicy />
+          <!--按天分割-->
+        <TimeBasedTriggeringPolicy interval="24" modulate="true"/>
+      </Policies>
+    </RollingRandomAccessFile>
+  </Appenders>
+
+  <Loggers>
+      <!--过滤掉spring和mybatis的一些无用的DEBUG信息-->
+      <logger name="org.springframework" level="INFO"></logger>
+      <logger name="org.mybatis" level="INFO"></logger>
+      <Root level="info">
+          <AppenderRef ref="RollingRandomAccessFile" />
+          <!--生产环境控制台不打可注释-->
+          <AppenderRef ref="console"/>
+      </Root>
+  </Loggers>
+</Configuration>

@@ -33,8 +33,8 @@ public class SettlementTask {
     /**
      * 每天8点提醒结算
      */
-//    @Scheduled(cron = "0 00 08 * * ?")
-    @Scheduled(fixedRate = 10000)   //演示提醒邮件时可设置为10秒检查一次
+    @Scheduled(cron = "0 00 08 * * ?")
+//    @Scheduled(fixedRate = 10000)   //演示提醒邮件时可设置为10秒检查一次
     public void settlement() {
         AtomicInteger count = new AtomicInteger(0);
         List<LeaseInfo> leaseInfos = leaseInfoService.selectByStatus(0);
