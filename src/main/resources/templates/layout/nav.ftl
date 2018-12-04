@@ -1,7 +1,7 @@
 <nav class="site-navbar navbar navbar-default navbar-fixed-top navbar-inverse " role="navigation">
 	<div class="navbar-header">
 		<div class="navbar-brand navbar-brand-center site-gridmenu-toggle" data-toggle="gridmenu">
-			<span class="navbar-brand-logo visible-lg visible-xs navbar-logo">xx系统</span>
+			<span class="navbar-brand-logo visible-lg visible-xs navbar-logo">租赁管理系统</span>
 		</div>
 	</div>
 	<div class="navbar-container container-fluid">

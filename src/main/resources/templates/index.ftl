@@ -10,7 +10,7 @@
 			<h1>WELCOME </h1>
 			<h2 class="media-heading">
 				<small></small>
-				<small>欢迎使用xx系统</small>
+				<small>欢迎使用租赁管理系统</small>
 			</h2>
 			<img src="../../css/images/meeting.svg" width="500px">
 		</div>
