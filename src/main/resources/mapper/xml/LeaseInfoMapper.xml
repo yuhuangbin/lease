@@ -19,6 +19,11 @@
     id, box_code, air_code, bed_code, lessee_name, lessee_tel, lessee_company, cash_pledge, 
     status, start_date, end_date, create_date
   </sql>
+  <select id="leaseListpage" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    from lease_info
+  </select>
   <select id="leaseList" resultMap="BaseResultMap" parameterType="com.lease.domain.LeaseInfo">
     SELECT
     <include refid="Base_Column_List" />

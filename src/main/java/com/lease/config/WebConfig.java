@@ -22,10 +22,10 @@ import java.util.List;
 @Configuration
 public class WebConfig extends WebMvcConfigurerAdapter {
 
-    @Override
+    /*@Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/api/**");
-    }
+    }*/
 
     @Override
     public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {

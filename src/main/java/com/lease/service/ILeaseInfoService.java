@@ -3,6 +3,7 @@ package com.lease.service;
 import com.lease.api.ApiResponse;
 import com.lease.domain.LeaseInfo;
 import com.lease.domain.User;
+import com.lease.page.Page;
 
 import java.util.List;
 
@@ -25,4 +26,6 @@ public interface ILeaseInfoService {
     List<LeaseInfo> selectByStatus(Integer status);
 
     void update(LeaseInfo leaseInfo);
+
+    ApiResponse leaseListpage(LeaseInfo leaseInfo, Page page);
 }

@@ -4,6 +4,7 @@ import com.lease.api.ApiResponse;
 import com.lease.domain.LeaseInfo;
 import com.lease.domain.ProductInfo;
 import com.lease.domain.User;
+import com.lease.page.Page;
 import com.lease.service.ILeaseInfoService;
 import com.lease.service.IProductService;
 import org.apache.commons.lang3.StringUtils;
@@ -30,6 +31,11 @@ public class LeaseController {
     @RequestMapping("/list")
     public ApiResponse leaseList(@RequestBody LeaseInfo leaseInfo) {
         return leaseInfoService.leaseList(leaseInfo);
+    }
+
+    @RequestMapping("/listPage")
+    public ApiResponse leasePage(LeaseInfo leaseInfo, Page page) {
+        return leaseInfoService.leaseListpage(leaseInfo,page);
     }
 
     @RequestMapping("/del")

@@ -7,6 +7,7 @@ import com.lease.domain.User;
 import com.lease.event.EmailEvent;
 import com.lease.mapper.LeaseInfoMapper;
 import com.lease.mapper.ProductInfoMapper;
+import com.lease.page.Page;
 import com.lease.service.ILeaseInfoService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
@@ -96,6 +97,12 @@ public class LeaseInfoService implements ILeaseInfoService {
     @Override
     public void update(LeaseInfo leaseInfo) {
         leaseInfoMapper.updateByPrimaryKeySelective(leaseInfo);
+    }
+
+    @Override
+    public ApiResponse leaseListpage(LeaseInfo leaseInfo, Page page) {
+        List<LeaseInfo> leaseInfos = leaseInfoMapper.leaseListpage(leaseInfo,page);
+        return ApiResponse.getInstance(leaseInfos);
     }
 
     private void sendEmail(LeaseInfo leaseInfo, String userAccount) {
