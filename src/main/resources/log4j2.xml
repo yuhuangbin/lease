@@ -32,10 +32,10 @@
       <!--过滤掉spring和mybatis的一些无用的DEBUG信息-->
       <logger name="org.springframework" level="INFO"></logger>
       <logger name="org.mybatis" level="INFO"></logger>
-      <Root level="info">
+      <AsyncRoot level="info">
           <AppenderRef ref="RollingRandomAccessFile" />
           <!--生产环境控制台不打可注释-->
           <AppenderRef ref="console"/>
-      </Root>
+      </AsyncRoot>
   </Loggers>
 </Configuration>
