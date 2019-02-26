@@ -4,6 +4,7 @@ import com.lease.api.ApiResponse;
 import com.lease.domain.LeaseInfo;
 import com.lease.domain.ProductInfo;
 import com.lease.mapper.ProductInfoMapper;
+import com.lease.service.ILeaseInfoService;
 import com.lease.service.IProductService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ import java.util.List;
 public class ProductService implements IProductService {
     @Autowired
     private ProductInfoMapper productInfoMapper;
+    @Autowired
+    private ILeaseInfoService leaseInfoService;
 
     @Override
     public List<ProductInfo> selectAll() {

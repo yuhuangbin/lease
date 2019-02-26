@@ -28,6 +28,9 @@ public class LeaseController {
     @Autowired
     private ILeaseInfoService leaseInfoService;
 
+    @Autowired
+    private IProductService productService;
+
     @RequestMapping("/list")
     public ApiResponse leaseList(@RequestBody LeaseInfo leaseInfo) {
         return leaseInfoService.leaseList(leaseInfo);

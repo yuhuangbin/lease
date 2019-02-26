@@ -1,6 +1,7 @@
 package com.lease.controller;
 
 import com.lease.api.ApiResponse;
+import com.lease.config.ConfigTest;
 import com.lease.config.EscapeLogin;
 import com.lease.domain.User;
 import com.lease.service.IUserService;
@@ -21,6 +22,8 @@ public class LoginController {
 
     @Autowired
     private IUserService userService;
+    @Autowired
+    private ConfigTest configTest;
 
     @RequestMapping(value = "/login")
     public ApiResponse login(User user, HttpSession session) {
