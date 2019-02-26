@@ -2,7 +2,8 @@
 SQLyog Professional v12.09 (64 bit)
 MySQL - 5.7.23-log : Database - lease
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -94,7 +95,7 @@ CREATE TABLE `user` (
 
 /*Data for the table `user` */
 
-insert  into `user`(`user_id`,`user_name`,`user_pwd`,`create_date`) values (1,'943695742@qq.com','$2a$10$B9OUpkR5zjyMNOp98hwzou2MPAds6ScZQCmjCK5qK5ekX24GaVXgC','2018-11-30 22:59:59'),(2,'861490024@qq.com','$2a$10$B9OUpkR5zjyMNOp98hwzou2MPAds6ScZQCmjCK5qK5ekX24GaVXgC','2018-12-03 16:00:43'),(3,'3213811631@qq.com','$2a$10$B9OUpkR5zjyMNOp98hwzou2MPAds6ScZQCmjCK5qK5ekX24GaVXgC','2018-12-03 16:23:40'),(5,'yuhuangbin96@163.com','$2a$10$B9OUpkR5zjyMNOp98hwzou2MPAds6ScZQCmjCK5qK5ekX24GaVXgC',NULL);
+insert  into `user`(`user_id`,`user_name`,`user_pwd`,`create_date`) values (1,'admin','$2a$10$B9OUpkR5zjyMNOp98hwzou2MPAds6ScZQCmjCK5qK5ekX24GaVXgC','2018-11-30 22:59:59');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
